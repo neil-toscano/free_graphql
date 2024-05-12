@@ -1,0 +1,81 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PlaceImage {
+  id: String!
+  url: String!
+  place: Place!
+}
+
+type Place {
+  """Id"""
+  id: ID!
+
+  """The name of the place"""
+  name: String!
+
+  """A description of the place"""
+  description: String!
+
+  """The address of visiting the place"""
+  address: String!
+
+  """The price of visiting the place"""
+  price: Float!
+
+  """The start date of availability"""
+  startDate: String!
+
+  """list of images"""
+  images: [PlaceImage!]!
+}
+
+type Query {
+  getAllPlaces: [Place!]!
+  getById(id: String!): Place!
+}
+
+type Mutation {
+  createPlace(createPlaceInput: CreatePlaceInput!): Place!
+  updatePlace(updatePlaceInput: UpdatePlaceInput!): Place!
+  removePlace(id: String!): String!
+  executeSeed: Boolean!
+}
+
+input CreatePlaceInput {
+  """The name of the place"""
+  name: String!
+
+  """A description of the place"""
+  description: String!
+
+  """The price of visiting the place"""
+  address: String!
+
+  """The price of visiting the place"""
+  price: Float!
+
+  """The start date of availability"""
+  startDate: String!
+  images: [String!]
+}
+
+input UpdatePlaceInput {
+  """The name of the place"""
+  name: String
+
+  """A description of the place"""
+  description: String
+
+  """The price of visiting the place"""
+  address: String
+
+  """The price of visiting the place"""
+  price: Float
+
+  """The start date of availability"""
+  startDate: String
+  images: [String!]
+  id: String!
+}
