@@ -14,6 +14,12 @@ import { CommonModule } from './common/common.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { SeedModule } from './seed/seed.module';
 import { Place } from './place/entities/place.entity';
+import { InscritosModule } from './inscritos/inscritos.module';
+import { ClasificadosModule } from './clasificados/clasificados.module';
+import { GanadoresModule } from './ganadores/ganadores.module';
+import { SalaModule } from './sala/sala.module';
+import { Inscrito } from './inscritos/entities/inscrito.entity';
+import { Clasificado } from './clasificados/entities/clasificado.entity';
 
 @Module({
   imports: [
@@ -25,13 +31,17 @@ import { Place } from './place/entities/place.entity';
       playground: false,
     }),
     TypeOrmModule.forRoot({
+      ssl: true,
+      extra: {
+        ssl: true ? { rejectUnauthorized: false } : null,
+      },
       type: 'postgres',
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [Place],
+      entities: [Place, Inscrito, Clasificado],
       synchronize: true,
       autoLoadEntities: true,
     }),
@@ -40,6 +50,10 @@ import { Place } from './place/entities/place.entity';
     CommonModule,
     CloudinaryModule,
     SeedModule,
+    InscritosModule,
+    ClasificadosModule,
+    GanadoresModule,
+    SalaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
